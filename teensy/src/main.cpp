@@ -7,11 +7,15 @@ void setup() {
 }
 
 void loop() {
-  float val0 = analogRead(A0) * (3.3 / 1023.0);
-  float val1 = analogRead(A1) * (3.3 / 1023.0);
-  Serial.print(val0);
-  Serial.print(',');
-  Serial.println(val1);
-  Serial.print('\n');
+  int raw0 = analogRead(A0);
+  int raw1 = analogRead(A1);
+
+  constexpr float CONVERSION = 3.3f / 1023.0f;
+
+  float val0 = raw0 * CONVERSION;
+  float val1 = raw1 * CONVERSION;
+
+  Serial.printf("%.3f,%.3f\n", val0, val1);
+
   delay(10);
 }
